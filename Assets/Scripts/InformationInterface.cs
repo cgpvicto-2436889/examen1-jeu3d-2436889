@@ -22,6 +22,8 @@ public class InformationInterface : MonoBehaviour
 
     [SerializeField, Tooltip("Référence à la boule.")]
     private Boule boule;
+    [SerializeField, Tooltip("RigidBody de la boule")]
+    private Rigidbody rb;
 
     // / Temps écoulé depuis le début du jeu
     private float tempsEcoule;
@@ -52,6 +54,7 @@ public class InformationInterface : MonoBehaviour
     private void CommencerJeu(InputAction.CallbackContext contexte)
     {
         ControleurJeu.Instance.Controles.actions.FindAction("Commencer").performed -= CommencerJeu;
+        rb.useGravity = true;
         tempsEcoule = 0f;
         StartCoroutine(CompterTemps());
     }
